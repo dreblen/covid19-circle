@@ -45,6 +45,9 @@ export default Vue.extend({
   },
   beforeCreate () {
     this.$store.commit('initialize')
+    setInterval(() => {
+      this.$store.dispatch('purgeOldTimelineItems')
+    }, 1000 * 60 * 5)
   }
 })
 </script>

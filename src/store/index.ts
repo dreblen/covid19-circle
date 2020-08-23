@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { DateTime } from 'luxon'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    purgeOldTimelineItems: function ({ state, commit }) {
+      // Remove anything older than 72 hours
+      const cutoff = DateTime.local().minus(1000 * 60 * 60 * 72).toString()
+      const items = state.timelineItems.filter((i) => {
+        return i.when > cutoff
+      })
+      commit('setTimelineItems', items)
+    },
     addTimelineItem: function ({ state, commit }, payload) {
       const items = state.timelineItems.slice()
       items.unshift(payload)
