@@ -22,11 +22,16 @@ export default new Vuex.Store({
         state.timelineItems = JSON.parse(i)
       }
     },
-    addTimelineItem: function (state, payload) {
-      state.timelineItems.unshift(payload)
+    setTimelineItems: function (state, payload) {
+      state.timelineItems = payload
       localStorage.setItem('timelineItems', JSON.stringify(state.timelineItems))
     }
   },
   actions: {
+    addTimelineItem: function ({ state, commit }, payload) {
+      const items = state.timelineItems.slice()
+      items.unshift(payload)
+      commit('setTimelineItems', items)
+    }
   }
 })

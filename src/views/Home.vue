@@ -49,7 +49,7 @@ export default Vue.extend({
   methods: {
     addItem: function (): void {
       // Add a new item
-      this.$store.commit('addTimelineItem', {
+      this.$store.dispatch('addTimelineItem', {
         when: new Date(),
         description: this.pendingDescription
       })
