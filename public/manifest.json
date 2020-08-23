@@ -1,0 +1,6 @@
+{
+  "name": "COVID-19 Circle",
+  "short_name": "COVID-19 Circle",
+  "start_url": "/",
+  "display": "standalone"
+}
