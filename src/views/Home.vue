@@ -47,7 +47,7 @@ export default Vue.extend({
     ])
   },
   methods: {
-    getFormattedDateString: function (iso: string): string {
+    getFormattedDateString: function (iso: string): string|null {
       return DateTime.fromISO(iso).toLocaleString(DateTime.DATETIME_SHORT)
     },
     addItem: function (): void {
