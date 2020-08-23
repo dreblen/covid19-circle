@@ -9,10 +9,9 @@
             right
             small
           >
-            <span slot="opposite">{{ item.when.toLocaleString() }}</span>
             <v-card>
               <v-card-title>{{ item.description }}</v-card-title>
-              <v-card-subtitle>{{ item.when.toLocaleString() }}</v-card-subtitle>
+              <v-card-subtitle>{{ getFormattedDateString(item.when) }}</v-card-subtitle>
             </v-card>
           </v-timeline-item>
         </v-timeline>
@@ -35,6 +34,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import { DateTime } from 'luxon'
 
 export default Vue.extend({
   name: 'Home',
@@ -47,10 +47,13 @@ export default Vue.extend({
     ])
   },
   methods: {
+    getFormattedDateString: function (iso: string): string {
+      return DateTime.fromISO(iso).toLocaleString(DateTime.DATETIME_SHORT)
+    },
     addItem: function (): void {
       // Add a new item
       this.$store.dispatch('addTimelineItem', {
-        when: new Date(),
+        when: DateTime.local().toString(),
         description: this.pendingDescription
       })
 

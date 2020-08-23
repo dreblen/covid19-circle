@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 interface TimelineItem {
-  when: Date;
+  when: string;
   description: string;
 }
 
